@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
+import org.drools.runtime.process.NodeInstance;
 import org.efaps.admin.dbproperty.DBProperties;
 import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
@@ -42,6 +43,8 @@ import org.efaps.db.Instance;
 import org.efaps.db.MultiPrintQuery;
 import org.efaps.db.QueryBuilder;
 import org.efaps.db.SelectBuilder;
+import org.efaps.esjp.bpm.image.Processor;
+import org.efaps.esjp.bpm.image.jobs.TaskColorJob;
 import org.efaps.esjp.ci.CIBPM;
 import org.efaps.util.EFapsException;
 import org.jbpm.task.query.TaskSummary;
@@ -91,7 +94,6 @@ public abstract class BProcess_Base
         return ret;
     }
 
-
     public Return getImageFieldValue(final Parameter _parameter)
         throws EFapsException
     {
@@ -125,5 +127,51 @@ public abstract class BProcess_Base
         }
         ret.put(ReturnValues.SNIPLETT, html.toString());
         return ret;
+    }
+
+    public Return getProcessImage4InstanceFieldValue(final Parameter _parameter)
+        throws EFapsException
+    {
+        final Return ret = new Return();
+        final StringBuilder html = new StringBuilder();
+
+        final QueryBuilder queryBldr = new QueryBuilder(CIBPM.GeneralInstance2ProcessId);
+        queryBldr.addWhereAttrEqValue(CIBPM.GeneralInstance2ProcessId.GeneralInstanceLink, _parameter.getInstance()
+                        .getGeneralId());
+        final MultiPrintQuery multi = queryBldr.getPrint();
+        multi.addAttribute(CIBPM.GeneralInstance2ProcessId.ProcessId);
+        multi.executeWithoutAccessCheck();
+
+        final List<NodeInstance> nodes = new ArrayList<NodeInstance>();
+        while (multi.next()) {
+            final Long processInstanceId = multi.<Long>getAttribute(CIBPM.GeneralInstance2ProcessId.ProcessId);
+            nodes.addAll(BPM.getActiveNodes4ProcessId(processInstanceId));
+        }
+
+        final QueryBuilder imgQueryBldr = new QueryBuilder(CIAdminProgram.BPMImage);
+        imgQueryBldr.addWhereAttrEqValue(CIAdminProgram.BPMImage.Name, "Pecsa_IncomingOrderProcess");
+        final MultiPrintQuery query = imgQueryBldr.getPrint();
+        query.execute();
+        while (query.next()) {
+            final Checkout checkOut = new Checkout(query.getCurrentInstance());
+            final InputStream svgIn = checkOut.execute();
+            try {
+                final Processor processor = new Processor(svgIn);
+                for (final NodeInstance node : nodes) {
+                    processor.addTransformationJob(new TaskColorJob("rgb(78,219,33)", node.getNodeName()));
+                }
+                processor.applyTransformationJobs();
+                html.append(processor.toXML());
+            } catch (final IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (html.length() < 1) {
+            html.append(DBProperties.getProperty("org.efaps.esjp.bpm.BProcess.NoImage"));
+        }
+        ret.put(ReturnValues.SNIPLETT, html.toString());
+        return ret;
+
     }
 }
