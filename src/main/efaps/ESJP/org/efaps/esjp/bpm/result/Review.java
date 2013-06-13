@@ -24,6 +24,8 @@ package org.efaps.esjp.bpm.result;
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsUUID;
 
 
 /**
@@ -32,6 +34,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author The eFaps Team
  * @version $Id$
  */
+@EFapsUUID("09fcf691-3773-4738-929e-3684d198aed2")
+@EFapsRevision("$Rev$")
 public class Review
     implements Serializable
 {

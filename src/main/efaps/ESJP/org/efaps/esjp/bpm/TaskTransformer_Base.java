@@ -18,24 +18,37 @@
  * Last Changed By: $Author$
  */
 
+
 package org.efaps.esjp.bpm;
 
+import org.efaps.admin.event.Parameter;
+import org.efaps.admin.event.Parameter.ParameterValues;
+import org.efaps.admin.event.Return;
+import org.efaps.admin.event.Return.ReturnValues;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
+import org.efaps.esjp.bpm.result.Review;
 
 
 /**
- * This class must be replaced for customization, therefore it is left empty.
- * Functional description can be found in the related "<code>_Base</code>"
- * class.
+ * TODO comment!
  *
  * @author The eFaps Team
  * @version $Id$
  */
-@EFapsUUID("cfb3938f-a697-4b54-9e8c-470cbc6e562b")
+@EFapsUUID("b25f4a3b-53ea-45c1-a83b-8709156beee0")
 @EFapsRevision("$Rev$")
-public class TaskTransformer
-    extends TaskTransformer_Base
+public abstract class TaskTransformer_Base
 {
-
+    public Return execute(final Parameter _parameter)
+    {
+        final Return ret = new Return();
+        final Review review = new Review();
+        final Boolean decision = (Boolean) _parameter.get(ParameterValues.BPM_DECISION);
+        if (decision != null && decision) {
+            review.setApproved(true);
+        }
+        ret.put(ReturnValues.VALUES, review);
+        return ret;
+    }
 }
