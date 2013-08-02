@@ -24,27 +24,28 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
 
-    <uuid>f6731331-e3a7-4a98-be35-ad1bb8e88497</uuid>
+    <uuid>bb7c6a1f-7c62-42d5-ae63-3f4b0ab09418</uuid>
     <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
 
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>BPM_GeneralInstance2ProcessId</name>
-        <parent>BPM_Object2ObjectAbstract</parent>
-        <purpose GeneralInstance="false"/>
-        <attribute>
-            <name>ProcessId</name>
-            <type>Long</type>
-            <sqltable>BPM_Object2ObjectTable</sqltable>
-            <sqlcolumn>TOID</sqlcolumn>
-        </attribute>
-        <attribute>
-            <name>GeneralInstanceLink</name>
-            <type>Link</type>
-            <typelink>GeneralInstance</typelink>
-            <sqltable>BPM_Object2ObjectTable</sqltable>
-            <sqlcolumn>FROMID</sqlcolumn>
-        </attribute>
+        <name>BPM_DelegateTask</name>
+        <parent>BPM_DelegateAutomaticAbstract</parent>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils"
+            method="cleanQueryCacheTrigger" name="BPM_DelegateTask.UPDATE_POST"
+            event="UPDATE_POST">
+            <property name="CacheName">org.efaps.esjp.bpm.util.BPM.CacheKey4Delegate</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils"
+            method="cleanQueryCacheTrigger" name="BPM_DelegateTask.UPDATE_POST"
+            event="INSERT_POST">
+            <property name="CacheName">org.efaps.esjp.bpm.util.BPM.CacheKey4Delegate</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils"
+            method="cleanQueryCacheTrigger" name="BPM_DelegateTask.UPDATE_POST"
+            event="DELETE_POST">
+            <property name="CacheName">org.efaps.esjp.bpm.util.BPM.CacheKey4Delegate</property>
+        </trigger>
     </definition>
 </datamodel-type>

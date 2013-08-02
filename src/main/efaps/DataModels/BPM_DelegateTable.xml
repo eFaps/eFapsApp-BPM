@@ -24,23 +24,27 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
 
-    <uuid>49301cc1-e43a-432b-965a-a331bea129a0</uuid>
+    <uuid>b34e17aa-5c9a-4b8d-82b9-745e7b93c8d2</uuid>
     <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
 
-    <!-- Connection between Abstract User and Abstract User -->
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>BPM_Object2ObjectTable</name>
+        <name>BPM_DelegateTable</name>
         <typeid-column>TYPEID</typeid-column>
         <database>
-            <table-name>T_BPMOBJ2OBJ</table-name>
-            <!-- columns -->
-            <column name="TYPEID"           type="INTEGER"  not-null="true" />
-            <column name="FROMID"           type="INTEGER"  not-null="true" />
-            <column name="TOID"             type="INTEGER"  not-null="true" />
-            <column name="CREATOR"          type="INTEGER"  not-null="true" />
-            <column name="CREATED"          type="DATETIME" not-null="true" />
+            <table-name>T_BPMDELEGATE</table-name>
+            <column name="TYPEID"           type="INTEGER"      not-null="true" />
+            <column name="FROMUUID"         type="STRING_SHORT" not-null="true" length="64"/>
+            <column name="TOUUID"           type="STRING_SHORT" not-null="true" length="64"/>
+            <column name="VALIDFROM"        type="DATETIME"     not-null="true" />
+            <column name="VALIDUNTIL"       type="DATETIME"     not-null="true" />
+            <column name="CREATOR"          type="INTEGER"      not-null="true" />
+            <column name="CREATED"          type="DATETIME"     not-null="true" />
+            <column name="MODIFIER"         type="INTEGER"      not-null="true"/>
+            <column name="MODIFIED"         type="DATETIME"     not-null="true"/>
+            <foreign name="T_BPMDELEGATE_FK_CRTR"        key="CREATOR"           reference="T_USERPERSON(ID)"/>
+            <foreign name="T_BPMDELEGATE_FK_MDFR"        key="MODIFIER"          reference="T_USERPERSON(ID)"/>
         </database>
     </definition>
 </datamodel-sqltable>

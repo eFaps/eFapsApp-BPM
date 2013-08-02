@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
 
-  Copyright 2003 - 2013 The eFaps Team
+  Copyright 2003 - 2010 The eFaps Team
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,31 +20,15 @@
   Last Changed By: $Author$
 
 -->
-<datamodel-type xmlns="http://www.efaps.org/xsd"
+<common-systemconfiguration xmlns="http://www.efaps.org/xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
 
-    <uuid>f6731331-e3a7-4a98-be35-ad1bb8e88497</uuid>
+    <uuid>53297af7-ef5f-459e-beb6-c1e69f6442c3</uuid>
     <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
-
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>BPM_GeneralInstance2ProcessId</name>
-        <parent>BPM_Object2ObjectAbstract</parent>
-        <purpose GeneralInstance="false"/>
-        <attribute>
-            <name>ProcessId</name>
-            <type>Long</type>
-            <sqltable>BPM_Object2ObjectTable</sqltable>
-            <sqlcolumn>TOID</sqlcolumn>
-        </attribute>
-        <attribute>
-            <name>GeneralInstanceLink</name>
-            <type>Link</type>
-            <typelink>GeneralInstance</typelink>
-            <sqltable>BPM_Object2ObjectTable</sqltable>
-            <sqlcolumn>FROMID</sqlcolumn>
-        </attribute>
+        <name>BPM-Configuration</name>
     </definition>
-</datamodel-type>
+</common-systemconfiguration>
