@@ -20,17 +20,16 @@
  Last Changed By: $Author$
 
 -->
-<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
-    <uuid>3e255140-bb2e-48e0-a135-da54e4df7d7d</uuid>
+
+    <uuid>a3ff893f-c5f6-4664-b29f-d530f07ef2dd</uuid>
     <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
+
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>BPM_MyDesk</name>
-        <childs>
-            <child>BPM_DelegateMyDesk</child>
-            <child>BPM_AdminMyDesk</child>
-        </childs>
+        <name>BPM_AdminMyDesk</name>
+        <property name="HRef">${ROOTURL}/taskadmin</property>
     </definition>
-</ui-menu>
+</ui-command>
