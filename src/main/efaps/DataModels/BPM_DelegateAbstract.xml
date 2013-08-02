@@ -58,7 +58,7 @@
         </attribute>
         <attribute>
             <name>ToUserUUID</name>
-            <type>Long</type>
+            <type>String</type>
             <sqltable>BPM_DelegateTable</sqltable>
             <sqlcolumn>TOUUID</sqlcolumn>
         </attribute>

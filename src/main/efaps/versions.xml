@@ -29,10 +29,29 @@
         <dependency order="0">
             <groupId>org.efaps</groupId>
             <artifactId>efaps-kernel-install</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <version number="1" reloadCache="false" login="true" compile="true">
         <description>Install BPM Integration App.</description>
+        <script type="groovy">
+            import java.io.File;
+            import java.util.UUID;
+            import org.efaps.admin.runlevel.RunLevel;
+            import org.efaps.admin.user.JAASSystem;
+            import org.efaps.admin.user.Role;
+            import org.efaps.db.Context;
+            import org.efaps.db.QueryBuilder;
+            import org.efaps.db.InstanceQuery;
+            import org.efaps.esjp.admin.ui.UIUpdate;
+            import org.efaps.importer.DataImport;
+
+            RunLevel.init("shell");
+            RunLevel.execute();
+
+            <!-- BPM_MyDesk, Admin_Common_MyDesk -->
+            UIUpdate update = new UIUpdate();
+            update.add2Menu("3e255140-bb2e-48e0-a135-da54e4df7d7d", "8d9aae87-fa36-4b62-aba0-dbd9c0ca273a", -1);
+        </script>
     </version>
 </install>
