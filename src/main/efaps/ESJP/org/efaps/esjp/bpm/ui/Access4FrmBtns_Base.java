@@ -58,17 +58,25 @@ public abstract class Access4FrmBtns_Base
         final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
 
         final boolean requireClaim = "true".equalsIgnoreCase((String) properties.get("RequireClaim"));
+        final boolean requireAction = "true".equalsIgnoreCase((String) properties.get("RequireAction"));
 
         final TaskSummary taskSummary = (TaskSummary) _parameter.get(ParameterValues.BPM_TASK);
 
-        if (requireClaim) {
+        // only if one of the properties is set. empty operations set means all allowed
+        if (requireClaim || requireAction) {
+            // if status ready
             if (Status.Ready.equals(taskSummary.getStatus())) {
-                operations.add(Operation.Claim);
+                if (requireClaim) {
+                    operations.add(Operation.Claim);
+                }
             } else if (Status.Reserved.equals(taskSummary.getStatus())) {
                 if (taskSummary.getActualOwner().getId()
                                 .equals(Context.getThreadContext().getPerson().getUUID().toString())) {
-                    operations.add(Operation.Complete);
-                    operations.add(Operation.Fail);
+                    if (!requireAction) {
+                        operations.add(Operation.Complete);
+                        operations.add(Operation.Fail);
+                    }
+                    operations.add(Operation.Release);
                 } else {
                     operations.add(Operation.Start);
                 }
