@@ -26,29 +26,32 @@
     <file-application>eFapsApp-Assets</file-application>
     <file-revision>$Rev$</file-revision>
     <definition>
-        <version-expression>(version==latest)</version-expression>
-        <name>BPM_DelegateTable</name>
-        <!-- fields -->
-        <field name="type">
-            <property name="Attribute">Type</property>
-            <property name="Label">BPM_DelegateAbstract/Type.Label</property>
-        </field>
-        <field name="fromUserUUID">
-            <property name="Attribute">FromUserUUID</property>
-            <property name="Label">BPM_DelegateAbstract/FromUserUUID.Label</property>
-            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
-        </field>
-        <field name="toUserUUID">
-            <property name="Attribute">ToUserUUID</property>
-            <property name="Label">BPM_DelegateAbstract/ToUserUUID.Label</property>
-        </field>
-        <field name="validFrom">
-            <property name="Attribute">ValidFrom</property>
-            <property name="Label">BPM_DelegateAbstract/ValidFrom.Label</property>
-        </field>
-        <field name="validUntil">
-            <property name="Attribute">ValidUntil</property>
-            <property name="Label">BPM_DelegateAbstract/ValidUntil.Label</property>
-        </field>
-    </definition>
+    <version-expression>(version==latest)</version-expression>
+    <name>BPM_DelegateTable</name>
+    <!-- fields -->
+    <field name="type">
+        <property name="Attribute">Type</property>
+        <property name="Label">BPM_DelegateAbstract/Type.Label</property>
+    </field>
+    <field name="fromUserUUID">
+        <property name="Attribute">FromUserUUID</property>
+        <property name="Label">BPM_DelegateAbstract/FromUserUUID.Label</property>
+        <trigger program="org.efaps.esjp.bpm.Delegation" method="translateUUID2User"
+            name="BPM_DelegateTable.fromUserUUID.UI_FIELD_FORMAT" event="UI_FIELD_FORMAT" />
+    </field>
+    <field name="toUserUUID">
+        <property name="Attribute">ToUserUUID</property>
+        <property name="Label">BPM_DelegateAbstract/ToUserUUID.Label</property>
+         <trigger program="org.efaps.esjp.bpm.Delegation" method="translateUUID2User"
+            name="BPM_DelegateTable.toUserUUID.UI_FIELD_FORMAT" event="UI_FIELD_FORMAT" />
+    </field>
+    <field name="validFrom">
+        <property name="Attribute">ValidFrom</property>
+        <property name="Label">BPM_DelegateAbstract/ValidFrom.Label</property>
+    </field>
+    <field name="validUntil">
+        <property name="Attribute">ValidUntil</property>
+        <property name="Label">BPM_DelegateAbstract/ValidUntil.Label</property>
+    </field>
+</definition>
 </ui-table>
