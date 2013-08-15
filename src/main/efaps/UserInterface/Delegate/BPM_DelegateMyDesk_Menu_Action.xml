@@ -23,7 +23,7 @@
 <ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>986a6c68-c577-44d7-8e12-9411b723a0f3</uuid>
-    <file-application>eFapsApp-Assets</file-application>
+    <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
     <definition>
         <version-expression>(version==latest)</version-expression>
@@ -31,6 +31,7 @@
         <!-- childs -->
         <childs>
             <child>BPM_DelegateMyDesk_Menu_Action_CreateTask</child>
+            <child>BPM_DelegateMyDesk_Menu_Action_StopTask</child>
             <child>BPM_DelegateMyDesk_Menu_Action_Delete</child>
         </childs>
     </definition>

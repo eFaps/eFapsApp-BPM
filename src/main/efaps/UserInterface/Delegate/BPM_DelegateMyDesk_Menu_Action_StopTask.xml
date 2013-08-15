@@ -22,26 +22,20 @@
 -->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
-    <uuid>895e3dd0-0f21-407a-a29b-1a08eaead7e8</uuid>
+    <uuid>d68812b1-fb2d-4787-b57a-deb504662f7b</uuid>
     <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>BPM_DelegateMyDesk_Menu_Action_CreateTask</name>
+        <name>BPM_DelegateMyDesk_Menu_Action_StopTask</name>
         <access>
             <role>Administration</role>
         </access>
-        <!-- target definitions -->
         <target>
-            <form>BPM_DelegateForm</form>
-            <execute program="org.efaps.esjp.common.uiform.Create"/>
+            <execute program="org.efaps.esjp.bpm.Delegation" method="stopDelegation"/>
         </target>
-        <!-- properties -->
-        <property name="Target">modal</property>
-        <property name="TargetCreateType">BPM_DelegateTask</property>
-        <property name="TargetMode">create</property>
-        <property name="TargetDefaultMenu">false</property>
-        <property name="WindowHeight">460</property>
-        <property name="WindowWidth">600</property>
+       <property name="AskUser">true</property>
+       <property name="Submit">true</property>
+       <property name="SubmitSelectedRows">1</property>
     </definition>
 </ui-command>

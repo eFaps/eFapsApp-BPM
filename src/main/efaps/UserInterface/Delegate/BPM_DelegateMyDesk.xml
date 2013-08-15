@@ -35,7 +35,7 @@
             <menu>BPM_DelegateMyDesk_Menu</menu>
             <table>BPM_DelegateTable</table>
             <evaluate program="org.efaps.esjp.common.uitable.MultiPrint">
-                <property name="Types">BPM_DelegateAbstract</property>
+                <property name="Type">BPM_DelegateAbstract</property>
             </evaluate>
         </target>
         <!-- properties -->

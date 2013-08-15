@@ -29,7 +29,11 @@ import org.efaps.admin.event.Return;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.user.AbstractUserObject;
+import org.efaps.db.Instance;
+import org.efaps.db.Update;
+import org.efaps.esjp.ci.CIBPM;
 import org.efaps.util.EFapsException;
+import org.joda.time.DateTime;
 
 /**
  * TODO comment!
@@ -42,6 +46,12 @@ import org.efaps.util.EFapsException;
 public abstract class Delegation_Base
 {
 
+    /**
+     * Convert a UUID String to a UserObject name for easier understanding.
+     * @param _parameter    Parameter as passed by the eFaps API
+     * @return empty Return
+     * @throws EFapsException on error
+     */
     public Return translateUUID2User(final Parameter _parameter)
         throws EFapsException
     {
@@ -55,5 +65,26 @@ public abstract class Delegation_Base
             }
         }
         return ret;
+    }
+
+    /**
+     * Stop a delegation by setting the Until date to now.
+     * @param _parameter    Parameter as passed by the eFaps API
+     * @return empty Return
+     * @throws EFapsException on error
+     */
+    public Return stopDelegation(final Parameter _parameter)
+        throws EFapsException
+    {
+        final String[] oids = (String[]) _parameter.get(ParameterValues.OTHERS);
+        if (oids != null && oids.length > 0) {
+            final Instance instance = Instance.get(oids[0]);
+            if (instance.isValid()) {
+                final Update update = new Update(instance);
+                update.add(CIBPM.DelegateAbstract.ValidUntil, new DateTime());
+                update.execute();
+            }
+        }
+        return new Return();
     }
 }
