@@ -30,7 +30,9 @@
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>BPM_DelegateTree_Menu_Action_Edit</name>
-        
+        <access>
+            <role>Administration</role>
+        </access>
         <target>
             <form>BPM_DelegateForm</form>
             <execute program="org.efaps.esjp.common.uiform.Edit" />
