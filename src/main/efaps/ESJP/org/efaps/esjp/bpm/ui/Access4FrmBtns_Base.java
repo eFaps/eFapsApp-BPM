@@ -81,6 +81,10 @@ public abstract class Access4FrmBtns_Base
                     operations.add(Operation.Start);
                 }
             }
+            // allways add delegate to let the default value work (show when delegates exist)
+            if (!operations.isEmpty()) {
+                operations.add(Operation.Delegate);
+            }
         }
         return ret;
     }
