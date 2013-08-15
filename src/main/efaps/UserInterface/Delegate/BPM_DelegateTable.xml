@@ -23,7 +23,7 @@
 <ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>3f0ebd29-a194-48d9-9db6-57439dc13392</uuid>
-    <file-application>eFapsApp-Assets</file-application>
+    <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
     <definition>
     <version-expression>(version==latest)</version-expression>
@@ -32,6 +32,7 @@
     <field name="type">
         <property name="Attribute">Type</property>
         <property name="Label">BPM_DelegateAbstract/Type.Label</property>
+        <property name="HRef">TREE</property>
     </field>
     <field name="fromUserUUID">
         <property name="Attribute">FromUserUUID</property>

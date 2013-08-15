@@ -28,16 +28,46 @@
         <name>BPM_DelegateForm</name>
         <!-- fields -->
         <field name="fromUserUUID">
-            <property name="Columns">60</property>
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
             <property name="Attribute">FromUserUUID</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="dropDownFieldValue" name="BPM_DelegateForm.fromUserUUID.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="Type">Admin_User_RoleAbstract</property>
+                <property name="Select">attribute[Name]</property>
+                <property name="ValueSelect">attribute[UUID]</property>
+                <property name="OrderSelect">attribute[Name]</property>
+                <property name="SetSelected">true</property>
+            </trigger>
         </field>
         <field name="toUserUUID">
-            <property name="Columns">60</property>
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
             <property name="Attribute">ToUserUUID</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="dropDownFieldValue" name="BPM_DelegateForm.toUserUUID.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="Type">Admin_User_RoleAbstract</property>
+                <property name="Select">attribute[Name]</property>
+                <property name="ValueSelect">attribute[UUID]</property>
+                <property name="OrderSelect">attribute[Name]</property>
+                <property name="SetSelected">true</property>
+            </trigger>
+        </field>
+         <field name="fromUserUUID4View">
+            <property name="ModeEdit">NONE</property>
+            <property name="Attribute">FromUserUUID</property>
+            <trigger program="org.efaps.esjp.bpm.Delegation" method="translateUUID2User"
+                name="BPM_DelegateForm.fromUserUUID4View.UI_FIELD_FORMAT" event="UI_FIELD_FORMAT" />
+        </field>
+        <field name="toUserUUID4View">
+            <property name="ModeEdit">NONE</property>
+            <property name="Attribute">ToUserUUID</property>
+            <trigger program="org.efaps.esjp.bpm.Delegation" method="translateUUID2User"
+                name="BPM_DelegateForm.toUserUUID4View.UI_FIELD_FORMAT" event="UI_FIELD_FORMAT" />
         </field>
         <field name="validFrom">
             <property name="Columns">12</property>
