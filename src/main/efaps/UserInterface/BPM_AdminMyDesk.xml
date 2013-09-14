@@ -30,6 +30,9 @@
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>BPM_AdminMyDesk</name>
+        <access>
+            <role>Administration</role>
+        </access>
         <property name="HRef">${ROOTURL}/taskadmin</property>
     </definition>
 </ui-command>
