@@ -59,7 +59,7 @@ public abstract class StatusTask_Base
             if (status != null) {
                 final Update update = new Update(inst);
                 update.add(inst.getType().getStatusAttribute(), status.getId());
-                update.execute();
+                update.executeWithoutAccessCheck();
             }
         }
         return ret;

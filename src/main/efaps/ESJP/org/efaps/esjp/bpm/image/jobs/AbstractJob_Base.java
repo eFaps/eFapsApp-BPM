@@ -47,8 +47,10 @@ public abstract class AbstractJob_Base
     {
         this.key = _key;
         for (final String taskName : _taskNames) {
-            final String taskNameTmp = taskName.replaceAll(" ", "");
-            this.taskNames.add(taskNameTmp + "_");
+            if (!taskName.isEmpty()) {
+                final String taskNameTmp = taskName.replaceAll(" ", "");
+                this.taskNames.add(taskNameTmp + "_");
+            }
         }
     }
 
