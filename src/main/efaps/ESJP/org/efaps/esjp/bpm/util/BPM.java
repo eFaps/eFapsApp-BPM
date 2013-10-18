@@ -50,13 +50,13 @@ public final class BPM
     }
 
     /**
-     * @return the SystemConfigruation for Sales
+     * @return the SystemConfiguration for BPM
      * @throws CacheReloadException on error
      */
     public static SystemConfiguration getSysConfig()
         throws CacheReloadException
     {
-        // Bpm-Configuration
+        // BPM-Configuration
         return SystemConfiguration.get(UUID.fromString("53297af7-ef5f-459e-beb6-c1e69f6442c3"));
     }
 }

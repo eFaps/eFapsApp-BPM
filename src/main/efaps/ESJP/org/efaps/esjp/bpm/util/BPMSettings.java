@@ -35,5 +35,4 @@ import org.efaps.admin.program.esjp.EFapsUUID;
 @EFapsRevision("$Rev$")
 public interface BPMSettings
 {
-
 }
