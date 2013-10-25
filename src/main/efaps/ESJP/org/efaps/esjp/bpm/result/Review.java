@@ -22,11 +22,11 @@
 package org.efaps.esjp.bpm.result;
 
 import java.io.Serializable;
+import java.util.UUID;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
+import org.efaps.admin.user.Person;
 import org.efaps.db.Context;
 import org.efaps.util.EFapsException;
 
@@ -54,8 +54,40 @@ public class Review
 
     /**
      * Name of the user that set the Status.
+     * Userfriendly value that does not guarantee uniqueness.
      */
     private String userName;
+
+    /**
+     * UUID of the user that set the Status.
+     * Value that does guarantee uniqueness.
+     */
+    private UUID userUUID;
+
+    /**
+     * On Instantiation set the User.
+     * @throws EFapsException on error
+     */
+    public Review()
+        throws EFapsException
+    {
+        setUser();
+    }
+
+    /**
+     * Set the User information.
+     * @throws EFapsException on error
+     */
+    private void setUser() throws EFapsException
+    {
+        final Person person = Context.getThreadContext().getPerson();
+        if (person != null) {
+            this.userName = person.getName();
+            this.userUUID = person.getUUID();
+        } else {
+            this.userName = "Unknown";
+        }
+    }
 
     /**
      * Getter method for the instance variable {@link #approved}.
@@ -77,7 +109,7 @@ public class Review
         throws EFapsException
     {
         this.approved = _approved;
-        this.userName = Context.getThreadContext().getPerson().getName();
+        setUser();
     }
 
     /**
@@ -90,9 +122,23 @@ public class Review
         return this.userName;
     }
 
+    /**
+     * Getter method for the instance variable {@link #userUUID}.
+     *
+     * @return value of instance variable {@link #userUUID}
+     */
+    public UUID getUserUUID()
+    {
+        return this.userUUID;
+    }
+
     @Override
     public String toString()
     {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
+        return new StringBuilder()
+            .append("Review: [")
+            .append("approved: ").append(this.approved)
+            .append(", Person: {").append(this.userName).append(", ").append(this.userUUID).append("}]")
+            .toString();
     }
 }
