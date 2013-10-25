@@ -18,7 +18,6 @@
  * Last Changed By: $Author$
  */
 
-
 package org.efaps.esjp.bpm;
 
 import org.efaps.admin.event.Parameter;
@@ -28,7 +27,7 @@ import org.efaps.admin.event.Return.ReturnValues;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.esjp.bpm.result.Review;
-
+import org.efaps.util.EFapsException;
 
 /**
  * TODO comment!
@@ -40,7 +39,9 @@ import org.efaps.esjp.bpm.result.Review;
 @EFapsRevision("$Rev$")
 public abstract class TaskTransformer_Base
 {
+
     public Return execute(final Parameter _parameter)
+        throws EFapsException
     {
         final Return ret = new Return();
         final Review review = new Review();
