@@ -40,13 +40,19 @@ public abstract class TaskColorJob_Base
     extends AbstractJob
 {
 
+    /**
+     * Suffix used for tyhis job.
+     */
     public final static String BACKGROUND_NODE_SUFIX = "eFapsBackground";
 
     /**
      * Logging instance used in this class.
      */
-    private static final Logger LOG = LoggerFactory.getLogger(TaskColorJob_Base.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TaskColorJob.class);
 
+    /**
+     * Color to be set.
+     */
     private final String color;
 
     /**
@@ -61,14 +67,20 @@ public abstract class TaskColorJob_Base
     {
         super(TaskColorJob_Base.BACKGROUND_NODE_SUFIX, _taskNames);
         this.color = _color;
+        TaskColorJob_Base.LOG.debug("Created new TaskColorJob for {}, {}", _color, _taskNames);
     }
 
-    public void transform(final Context context,
+    /**
+     * {@inheritDoc}
+     */
+    public void transform(final Context _context,
                           final String _nodeID)
     {
-        final Document svgDocument = context.getSvgDocument();
+        TaskColorJob_Base.LOG.trace("Trying to transform for Node '{}' for  {}", _nodeID, _context);
+        final Document svgDocument = _context.getSvgDocument();
         if (apply(_nodeID)) {
             final Element element = svgDocument.getElementById(_nodeID);
+            TaskColorJob_Base.LOG.trace("Found element '{}'", element);
             // check if style element
             final String style = element.getAttribute("style");
             if (style == null) {

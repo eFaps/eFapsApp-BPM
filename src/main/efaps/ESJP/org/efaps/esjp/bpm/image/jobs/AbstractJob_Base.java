@@ -23,8 +23,11 @@ package org.efaps.esjp.bpm.image.jobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * TODO comment!
@@ -38,8 +41,19 @@ public abstract class AbstractJob_Base
     implements TransformationJob
 {
 
+    /**
+     * Logging instance used in this class.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractJob.class);
+
+    /**
+     * Key fot his Job.
+     */
     private final String key;
 
+    /**
+     * List of task names the job belongs to.
+     */
     private final List<String> taskNames = new ArrayList<String>();
 
     public AbstractJob_Base(final String _key,
@@ -52,6 +66,7 @@ public abstract class AbstractJob_Base
                 this.taskNames.add(taskNameTmp + "_");
             }
         }
+        AbstractJob_Base.LOG.debug("Created new Job for key:'{}' on tasks: {}", this.key, this.taskNames);
     }
 
     /**
@@ -74,9 +89,14 @@ public abstract class AbstractJob_Base
         return this.key;
     }
 
+    /**
+     * @param _nodeId nodeid to be checked
+     * @return true if applies else false
+     */
     public boolean apply(final String _nodeId)
     {
         boolean ret = false;
+        AbstractJob_Base.LOG.trace("Checking if job muts be applied: {}", this);
         if (_nodeId.contains(this.key)) {
             for (final String taskName : getTaskNames()) {
                 ret = _nodeId.contains(taskName);
@@ -85,6 +105,13 @@ public abstract class AbstractJob_Base
                 }
             }
         }
+        AbstractJob_Base.LOG.trace("Job applies: {}", ret);
         return ret;
+    }
+
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

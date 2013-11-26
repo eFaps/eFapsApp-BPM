@@ -38,8 +38,8 @@ public abstract class AbstractJob
 {
 
     /**
-     * @param _key
-     * @param _taskNames
+     * @param _key _key of the object
+     * @param _taskNames tasknames
      */
     public AbstractJob(final String _key,
                        final String... _taskNames)
