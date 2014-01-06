@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
-import org.drools.runtime.process.NodeInstance;
 import org.efaps.admin.dbproperty.DBProperties;
 import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
@@ -49,7 +48,8 @@ import org.efaps.esjp.bpm.image.Processor;
 import org.efaps.esjp.bpm.image.jobs.TaskColorJob;
 import org.efaps.esjp.ci.CIBPM;
 import org.efaps.util.EFapsException;
-import org.jbpm.task.query.TaskSummary;
+import org.kie.api.runtime.process.NodeInstance;
+import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,16 +78,16 @@ public abstract class BProcess_Base
      */
     public List<TaskSummary> getTaskSummary4Instance(final Parameter _parameter,
                                                      final String _taskName,
-                                                     final List<org.jbpm.task.Status> _status)
+                                                     final List<org.kie.api.task.model.Status> _status)
         throws EFapsException
     {
         final List<TaskSummary> ret = new ArrayList<TaskSummary>();
         final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
         final String taskName = _taskName == null ? (String) properties.get("TaskName") : _taskName;
-        final List<org.jbpm.task.Status> status;
+        final List<org.kie.api.task.model.Status> status;
         if (_status == null) {
-            status = new ArrayList<org.jbpm.task.Status>();
-            for (final org.jbpm.task.Status statusTmp : org.jbpm.task.Status.values()) {
+            status = new ArrayList<org.kie.api.task.model.Status>();
+            for (final org.kie.api.task.model.Status statusTmp : org.kie.api.task.model.Status.values()) {
                 status.add(statusTmp);
             }
         } else {

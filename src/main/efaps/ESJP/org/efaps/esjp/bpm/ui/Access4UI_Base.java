@@ -34,8 +34,9 @@ import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.db.Context;
 import org.efaps.esjp.bpm.BProcess;
 import org.efaps.util.EFapsException;
-import org.jbpm.task.User;
-import org.jbpm.task.query.TaskSummary;
+import org.kie.api.task.model.TaskSummary;
+import org.kie.api.task.model.User;
+
 
 
 /**
@@ -55,8 +56,8 @@ public abstract class Access4UI_Base
         final Return ret = new Return();
         final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
 
-        final List<org.jbpm.task.Status> status = new ArrayList<org.jbpm.task.Status>();
-        status.add(org.jbpm.task.Status.Reserved);
+        final List<org.kie.api.task.model.Status> status = new ArrayList<org.kie.api.task.model.Status>();
+        status.add(org.kie.api.task.model.Status.Reserved);
 
         final BProcess process = new BProcess();
 

@@ -33,9 +33,10 @@ import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.db.Context;
 import org.efaps.util.EFapsException;
-import org.jbpm.task.Status;
-import org.jbpm.task.query.TaskSummary;
-import org.jbpm.task.service.Operation;
+import org.kie.api.task.model.Status;
+import org.kie.api.task.model.TaskSummary;
+import org.kie.internal.task.api.model.Operation;
+
 
 
 /**
