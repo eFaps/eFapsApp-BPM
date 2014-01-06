@@ -103,7 +103,7 @@ public abstract class BProcess_Base
 
         while (multi.next()) {
             final Long processInstanceId = multi.<Long>getAttribute(CIBPM.GeneralInstance2ProcessId.ProcessId);
-            ret.addAll(BPM.getTasksByStatusByProcessIdByTaskName(processInstanceId,
+            ret.addAll(BPM.getTasksByStatusByProcessInstanceIdByTaskName(processInstanceId,
                             status,
                             taskName));
         }
