@@ -31,6 +31,7 @@ import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
+import org.efaps.bpm.identity.EntityMapper;
 import org.efaps.db.Context;
 import org.efaps.util.EFapsException;
 import org.kie.api.task.model.Status;
@@ -72,7 +73,7 @@ public abstract class Access4FrmBtns_Base
                 }
             } else if (Status.Reserved.equals(taskSummary.getStatus())) {
                 if (taskSummary.getActualOwner().getId()
-                                .equals(Context.getThreadContext().getPerson().getUUID().toString())) {
+                                .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
                     if (!requireAction) {
                         operations.add(Operation.Complete);
                         operations.add(Operation.Fail);

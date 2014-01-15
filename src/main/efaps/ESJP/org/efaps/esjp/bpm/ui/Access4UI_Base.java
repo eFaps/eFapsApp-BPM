@@ -31,6 +31,7 @@ import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
+import org.efaps.bpm.identity.EntityMapper;
 import org.efaps.db.Context;
 import org.efaps.esjp.bpm.BProcess;
 import org.efaps.util.EFapsException;
@@ -65,7 +66,7 @@ public abstract class Access4UI_Base
         boolean access = false;
         for (final TaskSummary taskSummary : taskSummaries) {
             final User owner = taskSummary.getActualOwner();
-            if (owner.getId().equals(Context.getThreadContext().getPerson().getUUID().toString())) {
+            if (owner.getId().equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
                 access = true;
                 break;
             }
