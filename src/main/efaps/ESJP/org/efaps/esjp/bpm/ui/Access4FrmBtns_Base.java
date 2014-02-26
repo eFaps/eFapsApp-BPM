@@ -22,7 +22,6 @@
 package org.efaps.esjp.bpm.ui;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.efaps.admin.event.Parameter;
@@ -33,6 +32,7 @@ import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.bpm.identity.EntityMapper;
 import org.efaps.db.Context;
+import org.efaps.esjp.common.AbstractCommon;
 import org.efaps.util.EFapsException;
 import org.kie.api.task.model.Status;
 import org.kie.api.task.model.TaskSummary;
@@ -49,6 +49,7 @@ import org.kie.internal.task.api.model.Operation;
 @EFapsUUID("0d2afb83-5e21-4d32-8b83-741bb08b4a59")
 @EFapsRevision("$Rev$")
 public abstract class Access4FrmBtns_Base
+    extends AbstractCommon
 {
 
     public Return execute(final Parameter _parameter)
@@ -57,35 +58,38 @@ public abstract class Access4FrmBtns_Base
         final Return ret = new Return();
         final Set<Operation> operations = new HashSet<Operation>();
         ret.put(ReturnValues.VALUES, operations);
-        final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
 
-        final boolean requireClaim = "true".equalsIgnoreCase((String) properties.get("RequireClaim"));
-        final boolean requireAction = "true".equalsIgnoreCase((String) properties.get("RequireAction"));
+        final boolean requireClaim = "true".equalsIgnoreCase(getProperty(_parameter, "RequireClaim"));
+        final boolean requireAction = "true".equalsIgnoreCase(getProperty(_parameter, "RequireClaim"));
+        final boolean infoOnly = "true".equalsIgnoreCase(getProperty(_parameter, "InfoOnly"));
 
         final TaskSummary taskSummary = (TaskSummary) _parameter.get(ParameterValues.BPM_TASK);
-
-        // only if one of the properties is set. empty operations set means all allowed
-        if (requireClaim || requireAction) {
-            // if status ready
-            if (Status.Ready.equals(taskSummary.getStatus())) {
-                if (requireClaim) {
-                    operations.add(Operation.Claim);
-                }
-            } else if (Status.Reserved.equals(taskSummary.getStatus())) {
-                if (taskSummary.getActualOwner().getId()
-                                .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
-                    if (!requireAction) {
-                        operations.add(Operation.Complete);
-                        operations.add(Operation.Fail);
+        if (infoOnly) {
+            operations.add(Operation.Complete);
+        } else {
+            // only if one of the properties is set. empty operations set means all allowed
+            if (requireClaim || requireAction) {
+                // if status ready
+                if (Status.Ready.equals(taskSummary.getStatus())) {
+                    if (requireClaim) {
+                        operations.add(Operation.Claim);
                     }
-                    operations.add(Operation.Release);
-                } else {
-                    operations.add(Operation.Start);
+                } else if (Status.Reserved.equals(taskSummary.getStatus())) {
+                    if (taskSummary.getActualOwner().getId()
+                                    .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
+                        if (!requireAction) {
+                            operations.add(Operation.Complete);
+                            operations.add(Operation.Fail);
+                        }
+                        operations.add(Operation.Release);
+                    } else {
+                        operations.add(Operation.Start);
+                    }
                 }
-            }
-            // allways add delegate to let the default value work (show when delegates exist)
-            if (!operations.isEmpty()) {
-                operations.add(Operation.Delegate);
+                // allways add delegate to let the default value work (show when delegates exist)
+                if (!operations.isEmpty()) {
+                    operations.add(Operation.Delegate);
+                }
             }
         }
         return ret;
