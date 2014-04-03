@@ -22,7 +22,9 @@
 package org.efaps.esjp.bpm.ui;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
@@ -30,6 +32,7 @@ import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
+import org.efaps.admin.user.Role;
 import org.efaps.bpm.identity.EntityMapper;
 import org.efaps.db.Context;
 import org.efaps.esjp.common.AbstractCommon;
@@ -60,8 +63,9 @@ public abstract class Access4FrmBtns_Base
         ret.put(ReturnValues.VALUES, operations);
 
         final boolean requireClaim = "true".equalsIgnoreCase(getProperty(_parameter, "RequireClaim"));
-        final boolean requireAction = "true".equalsIgnoreCase(getProperty(_parameter, "RequireClaim"));
+        final boolean requireAction = "true".equalsIgnoreCase(getProperty(_parameter, "RequireAction"));
         final boolean infoOnly = "true".equalsIgnoreCase(getProperty(_parameter, "InfoOnly"));
+        final Map<Integer, String> role4Delegate = analyseProperty(_parameter, "Role4Delegate");
 
         final TaskSummary taskSummary = (TaskSummary) _parameter.get(ParameterValues.BPM_TASK);
         if (infoOnly) {
@@ -86,9 +90,22 @@ public abstract class Access4FrmBtns_Base
                         operations.add(Operation.Start);
                     }
                 }
-                // allways add delegate to let the default value work (show when delegates exist)
-                if (!operations.isEmpty()) {
+            }
+        }
+        // always add delegate to let the default value work (show when delegates exist)
+        if (role4Delegate.isEmpty() && !operations.isEmpty()) {
+            operations.add(Operation.Delegate);
+        } else if (!role4Delegate.isEmpty()) {
+            for (final String roleStr : role4Delegate.values()) {
+                Role role;
+                if (isUUID(roleStr)) {
+                    role = Role.get(UUID.fromString(roleStr));
+                } else {
+                    role = Role.get(UUID.fromString(roleStr));
+                }
+                if (role.isAssigned()) {
                     operations.add(Operation.Delegate);
+                    break;
                 }
             }
         }
