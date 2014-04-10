@@ -36,6 +36,7 @@ import org.efaps.admin.event.Return.ReturnValues;
 import org.efaps.admin.program.esjp.EFapsRevision;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.ui.AbstractCommand;
+import org.efaps.admin.user.Person;
 import org.efaps.bpm.BPM;
 import org.efaps.ci.CIAdminProgram;
 import org.efaps.db.Checkout;
@@ -47,6 +48,7 @@ import org.efaps.db.SelectBuilder;
 import org.efaps.esjp.bpm.image.Processor;
 import org.efaps.esjp.bpm.image.jobs.TaskColorJob;
 import org.efaps.esjp.ci.CIBPM;
+import org.efaps.esjp.common.AbstractCommon;
 import org.efaps.util.EFapsException;
 import org.kie.api.runtime.process.NodeInstance;
 import org.kie.api.task.model.TaskSummary;
@@ -62,6 +64,7 @@ import org.slf4j.LoggerFactory;
 @EFapsUUID("19f2abbe-4632-4ad6-a3aa-c26c133e7f26")
 @EFapsRevision("$Rev$")
 public abstract class BProcess_Base
+    extends AbstractCommon
 {
     /**
      * Logging instance used in this class.
@@ -217,6 +220,66 @@ public abstract class BProcess_Base
                 ret = query.getCurrentValue();
             }
         }
+        return ret;
+    }
+
+    /**
+     * @param _parameter Parameter as passed by the eFaps API
+     * @return Return with List of instances
+     * @throws EFapsException on error
+     */
+    public Return getLogMultiPrint4Instance(final Parameter _parameter)
+        throws EFapsException
+    {
+        final Return ret = new Return();
+        final QueryBuilder queryBldr = new QueryBuilder(CIBPM.LogAbstract);
+        queryBldr.addWhereAttrEqValue(CIBPM.LogAbstract.GeneralInstanceLink, _parameter.getInstance().getGeneralId());
+        final InstanceQuery query = queryBldr.getQuery();
+        ret.put(ReturnValues.VALUES, query.execute());
+        return ret;
+    }
+
+    /**
+     * @param _parameter Parameter as passed by the eFaps API
+     * @return Return with List of instances
+     * @throws EFapsException on error
+     */
+    public Return getLogFieldValue4Instance(final Parameter _parameter)
+        throws EFapsException
+    {
+        final Return ret = new Return();
+        final StringBuilder html = new StringBuilder();
+
+        final QueryBuilder queryBldr = new QueryBuilder(CIBPM.LogAbstract);
+        queryBldr.addWhereAttrEqValue(CIBPM.LogAbstract.GeneralInstanceLink, _parameter.getInstance().getGeneralId());
+        final MultiPrintQuery multi = queryBldr.getPrint();
+        final SelectBuilder sel = SelectBuilder.get().type().label();
+        multi.addSelect(sel);
+        multi.addAttribute(CIBPM.LogAbstract.Creator, CIBPM.LogAbstract.Created);
+        if (multi.execute()) {
+            html.append("<table>");
+            if ("true".equalsIgnoreCase(getProperty(_parameter,"Header"))) {
+                html.append("<tr><th>")
+                    .append(DBProperties.getProperty("BPM_LogAbstract/Type.Label"))
+                    .append("</th><th>")
+                    .append(DBProperties.getProperty("BPM_LogAbstract/Creator.Label"))
+                    .append("</th><th>")
+                    .append(DBProperties.getProperty("BPM_LogAbstract/Created.Label"))
+                    .append("</th></tr>");
+            }
+            while (multi.next()) {
+                final Person creator = multi.<Person>getAttribute(CIBPM.LogAbstract.Creator);
+                html.append("<tr><td>")
+                    .append(multi.getSelect(sel))
+                    .append("</td><td>")
+                    .append(creator.getLastName()).append(", ").append(creator.getFirstName())
+                    .append("</td><td>")
+                    .append(multi.getAttribute(CIBPM.LogAbstract.Created))
+                    .append("</td></tr>");
+            }
+            html.append("</table>");
+        }
+        ret.put(ReturnValues.SNIPLETT, html.toString());
         return ret;
     }
 }

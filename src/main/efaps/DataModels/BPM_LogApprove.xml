@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
 
-  Copyright 2003 - 2012 The eFaps Team
+  Copyright 2003 - 2013 The eFaps Team
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,25 +20,15 @@
   Last Changed By: $Author$
 
 -->
-<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<datamodel-type xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
-    <uuid>db65ea00-3906-4743-b6f6-d6ed5cfe7a89</uuid>
+    <uuid>879a8128-18f6-4a59-af24-a08ed3d3edaa</uuid>
     <file-application>eFapsApp-BPM</file-application>
     <file-revision>$Rev$</file-revision>
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>BPM_Process4InstanceForm</name>
-        <field name="process">
-            <property name="HideLabel">true</property>
-            <property name="ClassNameUI">org.efaps.admin.datamodel.ui.StringUI</property>
-            <trigger program="org.efaps.esjp.bpm.BProcess"
-                method="getProcessImage4InstanceFieldValue"
-                name="BPM_ProcessForm.columns.UI_FIELD_VALUE"
-                event="UI_FIELD_VALUE" />
-        </field>
-        <field name="log" character="Target">
-            <table>BPM_LogTable</table>
-            <evaluate program="org.efaps.esjp.bpm.BProcess" method="getLogMultiPrint4Instance"/>
-        </field>
+        <name>BPM_LogApprove</name>
+        <parent>BPM_LogAbstract</parent>
+        <purpose GeneralInstance="false" />
     </definition>
-</ui-form>
+</datamodel-type>
