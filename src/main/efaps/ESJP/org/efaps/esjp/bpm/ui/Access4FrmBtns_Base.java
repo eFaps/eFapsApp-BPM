@@ -21,6 +21,7 @@
 
 package org.efaps.esjp.bpm.ui;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -40,6 +41,7 @@ import org.efaps.util.EFapsException;
 import org.kie.api.task.model.Status;
 import org.kie.api.task.model.TaskSummary;
 import org.kie.internal.task.api.model.Operation;
+
 
 
 
@@ -67,27 +69,34 @@ public abstract class Access4FrmBtns_Base
         final boolean infoOnly = "true".equalsIgnoreCase(getProperty(_parameter, "InfoOnly"));
         final Map<Integer, String> role4Delegate = analyseProperty(_parameter, "Role4Delegate");
 
-        final TaskSummary taskSummary = (TaskSummary) _parameter.get(ParameterValues.BPM_TASK);
-        if (infoOnly) {
-            operations.add(Operation.Complete);
+         final Collection<String> operationList = analyseProperty(_parameter, "Operation").values();
+        if (!operationList.isEmpty()) {
+            for (final String operation : operationList) {
+                operations.add(Operation.valueOf(operation));
+            }
         } else {
-            // only if one of the properties is set. empty operations set means all allowed
-            if (requireClaim || requireAction) {
-                // if status ready
-                if (Status.Ready.equals(taskSummary.getStatus())) {
-                    if (requireClaim) {
-                        operations.add(Operation.Claim);
-                    }
-                } else if (Status.Reserved.equals(taskSummary.getStatus())) {
-                    if (taskSummary.getActualOwner().getId()
-                                    .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
-                        if (!requireAction) {
-                            operations.add(Operation.Complete);
-                            operations.add(Operation.Fail);
+            final TaskSummary taskSummary = (TaskSummary) _parameter.get(ParameterValues.BPM_TASK);
+            if (infoOnly) {
+                operations.add(Operation.Complete);
+            } else {
+                // only if one of the properties is set. empty operations set means all allowed
+                if (requireClaim || requireAction) {
+                    // if status ready
+                    if (Status.Ready.equals(taskSummary.getStatus())) {
+                        if (requireClaim) {
+                            operations.add(Operation.Claim);
                         }
-                        operations.add(Operation.Release);
-                    } else {
-                        operations.add(Operation.Start);
+                    } else if (Status.Reserved.equals(taskSummary.getStatus())) {
+                        if (taskSummary.getActualOwner().getId()
+                                        .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
+                            if (!requireAction) {
+                                operations.add(Operation.Complete);
+                                operations.add(Operation.Fail);
+                            }
+                            operations.add(Operation.Release);
+                        } else {
+                            operations.add(Operation.Start);
+                        }
                     }
                 }
             }
