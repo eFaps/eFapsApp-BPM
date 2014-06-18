@@ -78,8 +78,13 @@ public abstract class Access4FrmBtns_Base
             final TaskSummary taskSummary = (TaskSummary) _parameter.get(ParameterValues.BPM_TASK);
             if (infoOnly) {
                 operations.add(Operation.Complete);
+                if (Status.Reserved.equals(taskSummary.getStatus()) && taskSummary.getActualOwner().getId()
+                                .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
+                    operations.add(Operation.Release);
+                }
             } else {
-                // only if one of the properties is set. empty operations set means all allowed
+                // only if one of the properties is set. empty operations set
+                // means all allowed
                 if (requireClaim || requireAction) {
                     // if status ready
                     if (Status.Ready.equals(taskSummary.getStatus())) {
@@ -87,8 +92,8 @@ public abstract class Access4FrmBtns_Base
                             operations.add(Operation.Claim);
                         }
                     } else if (Status.Reserved.equals(taskSummary.getStatus())) {
-                        if (taskSummary.getActualOwner().getId()
-                                        .equals(EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
+                        if (taskSummary.getActualOwner().getId().equals(
+                                        EntityMapper.getUserId(Context.getThreadContext().getPerson().getUUID()))) {
                             if (!requireAction) {
                                 operations.add(Operation.Complete);
                                 operations.add(Operation.Fail);
