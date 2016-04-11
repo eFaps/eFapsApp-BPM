@@ -1,5 +1,5 @@
 /*
- * Copyright 2003 - 2013 The eFaps Team
+ * Copyright 2003 - 2016 The eFaps Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Revision:        $Rev$
- * Last Changed:    $Date$
- * Last Changed By: $Author$
  */
 
 package org.efaps.esjp.bpm;
@@ -23,10 +20,11 @@ package org.efaps.esjp.bpm;
 import java.util.UUID;
 
 import org.efaps.admin.datamodel.ui.FieldValue;
+import org.efaps.admin.datamodel.ui.IUIValue;
 import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.user.AbstractUserObject;
 import org.efaps.db.Instance;
@@ -42,7 +40,7 @@ import org.joda.time.DateTime;
  * @version $Id$
  */
 @EFapsUUID("f7caf73b-75bb-4261-a565-00c56a00d270")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class Delegation_Base
 {
 
@@ -56,12 +54,12 @@ public abstract class Delegation_Base
         throws EFapsException
     {
         final Return ret = new Return();
-        final FieldValue fieldValue = (FieldValue) _parameter.get(ParameterValues.UIOBJECT);
-        final String uuid = (String) fieldValue.getValue();
+        final IUIValue fieldValue = (IUIValue) _parameter.get(ParameterValues.UIOBJECT);
+        final String uuid = (String) fieldValue.getObject();
         if (uuid != null && !uuid.isEmpty() && uuid.split("-").length == 5) {
             final AbstractUserObject user = AbstractUserObject.getUserObject(UUID.fromString(uuid));
-            if (user != null) {
-                fieldValue.setValue(user.getName());
+            if (user != null && fieldValue instanceof FieldValue) {
+               ((FieldValue) fieldValue).setValue(user.getName());
             }
         }
         return ret;
