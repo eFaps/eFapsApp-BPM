@@ -1,5 +1,5 @@
 /*
- * Copyright 2003 - 2013 The eFaps Team
+ * Copyright 2003 - 2016 The eFaps Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Revision:        $Rev$
- * Last Changed:    $Date$
- * Last Changed By: $Author$
  */
 
 package org.efaps.esjp.bpm;
@@ -33,7 +30,7 @@ import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.ui.AbstractCommand;
 import org.efaps.admin.user.Person;
@@ -50,6 +47,7 @@ import org.efaps.esjp.bpm.image.jobs.TaskColorJob;
 import org.efaps.esjp.ci.CIBPM;
 import org.efaps.esjp.common.AbstractCommon;
 import org.efaps.util.EFapsException;
+import org.joda.time.DateTime;
 import org.kie.api.runtime.process.NodeInstance;
 import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
@@ -59,10 +57,9 @@ import org.slf4j.LoggerFactory;
  * TODO comment!
  *
  * @author The eFaps Team
- * @version $Id$
  */
 @EFapsUUID("19f2abbe-4632-4ad6-a3aa-c26c133e7f26")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class BProcess_Base
     extends AbstractCommon
 {
@@ -270,11 +267,11 @@ public abstract class BProcess_Base
             while (multi.next()) {
                 final Person creator = multi.<Person>getAttribute(CIBPM.LogAbstract.Creator);
                 html.append("<tr><td>")
-                    .append(multi.getSelect(sel))
+                    .append(multi.<String>getSelect(sel))
                     .append("</td><td>")
                     .append(creator.getLastName()).append(", ").append(creator.getFirstName())
                     .append("</td><td>")
-                    .append(multi.getAttribute(CIBPM.LogAbstract.Created))
+                    .append(multi.<DateTime>getAttribute(CIBPM.LogAbstract.Created))
                     .append("</td></tr>");
             }
             html.append("</table>");
