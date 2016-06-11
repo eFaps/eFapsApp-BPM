@@ -14,23 +14,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  Author:          The eFaps Team
-  Revision:        $Rev$
-  Last Changed:    $Date$
-  Last Changed By: $Author$
-
 -->
 <ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>c34e35ad-93ed-4190-887d-5be9a2302edf</uuid>
     <file-application>eFapsApp-BPM</file-application>
-    <file-revision>$Rev$</file-revision>
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>BPM_TaskDefaultForm</name>
         <field name="warning">
             <property name="HideLabel">true</property>
-            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="UIType">SNIPPLET</property>
             <trigger program="org.efaps.esjp.common.uiform.Field"
                 method="getDBPropertiesFieldValue"
                 name="BPM_TaskDefaultForm.warning.UI_FIELD_VALUE"
