@@ -19,7 +19,6 @@ package org.efaps.esjp.bpm;
 
 import java.util.UUID;
 
-import org.efaps.admin.datamodel.ui.FieldValue;
 import org.efaps.admin.datamodel.ui.IUIValue;
 import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
@@ -58,9 +57,10 @@ public abstract class Delegation_Base
         final String uuid = (String) fieldValue.getObject();
         if (uuid != null && !uuid.isEmpty() && uuid.split("-").length == 5) {
             final AbstractUserObject user = AbstractUserObject.getUserObject(UUID.fromString(uuid));
-            if (user != null && fieldValue instanceof FieldValue) {
-               ((FieldValue) fieldValue).setValue(user.getName());
-            }
+            //TODO
+            //if (user != null && fieldValue instanceof FieldValue) {
+              // ((FieldValue) fieldValue).setValue(user.getName());
+            //}
         }
         return ret;
     }
