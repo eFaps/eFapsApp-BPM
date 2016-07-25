@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.image;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.w3c.dom.Document;
 
@@ -31,7 +31,7 @@ import org.w3c.dom.Document;
  * @version $Id$
  */
 @EFapsUUID("9d70d25d-011f-419b-b7ad-21780ffc2df3")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class Context_Base
 {
 

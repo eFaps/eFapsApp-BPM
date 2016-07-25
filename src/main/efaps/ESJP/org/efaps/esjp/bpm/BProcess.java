@@ -21,7 +21,7 @@
 
 package org.efaps.esjp.bpm;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -34,7 +34,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("2c97f34e-1cb2-4a17-9312-30b7cc36b012")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class BProcess
     extends BProcess_Base
 {

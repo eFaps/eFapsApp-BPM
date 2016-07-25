@@ -24,7 +24,7 @@ import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.esjp.bpm.result.Review;
 import org.efaps.util.EFapsException;
@@ -36,7 +36,7 @@ import org.efaps.util.EFapsException;
  * @version $Id$
  */
 @EFapsUUID("b25f4a3b-53ea-45c1-a83b-8709156beee0")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class TaskTransformer_Base
 {
 

@@ -29,7 +29,7 @@ import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.bpm.identity.EntityMapper;
 import org.efaps.db.Context;
@@ -47,7 +47,7 @@ import org.kie.api.task.model.User;
  * @version $Id$
  */
 @EFapsUUID("2e4b2a72-69f8-492d-a1ca-c1384109316a")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class Access4UI_Base
 {
 
@@ -57,7 +57,7 @@ public abstract class Access4UI_Base
         final Return ret = new Return();
         final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
 
-        final List<org.kie.api.task.model.Status> status = new ArrayList<org.kie.api.task.model.Status>();
+        final List<org.kie.api.task.model.Status> status = new ArrayList<>();
         status.add(org.kie.api.task.model.Status.Reserved);
 
         final BProcess process = new BProcess();
@@ -72,7 +72,7 @@ public abstract class Access4UI_Base
             }
         }
         final boolean inverse = "true".equalsIgnoreCase((String) properties.get("Inverse"));
-        if ((!inverse && access) || (inverse && !access)) {
+        if (!inverse && access || inverse && !access) {
             ret.put(ReturnValues.TRUE, true);
         }
         return ret;

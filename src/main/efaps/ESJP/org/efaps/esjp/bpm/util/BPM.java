@@ -23,7 +23,7 @@ package org.efaps.esjp.bpm.util;
 import java.util.UUID;
 
 import org.efaps.admin.common.SystemConfiguration;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.util.cache.CacheReloadException;
 
@@ -34,7 +34,7 @@ import org.efaps.util.cache.CacheReloadException;
  * @version $Id$
  */
 @EFapsUUID("1eafb734-12f0-44c0-87f1-c59290fbe156")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public final class BPM
 {
     /**

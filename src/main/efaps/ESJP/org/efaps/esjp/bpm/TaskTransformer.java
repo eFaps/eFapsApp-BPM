@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -33,7 +33,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("cfb3938f-a697-4b54-9e8c-470cbc6e562b")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class TaskTransformer
     extends TaskTransformer_Base
 {

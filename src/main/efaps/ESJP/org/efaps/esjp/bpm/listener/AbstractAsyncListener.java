@@ -21,6 +21,8 @@
 
 package org.efaps.esjp.bpm.listener;
 
+import org.efaps.admin.program.esjp.EFapsApplication;
+import org.efaps.admin.program.esjp.EFapsUUID;
 
 /**
  * TODO comment!
@@ -28,6 +30,8 @@ package org.efaps.esjp.bpm.listener;
  * @author The eFaps Team
  * @version $Id$
  */
+@EFapsUUID("daa0d3da-9816-400d-a794-5d072b99d46e")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class AbstractAsyncListener
     extends AbstractAsyncListener_Base
 {

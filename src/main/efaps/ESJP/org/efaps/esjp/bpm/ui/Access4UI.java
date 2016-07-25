@@ -21,7 +21,7 @@
 
 package org.efaps.esjp.bpm.ui;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -35,7 +35,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("918ec74c-7288-47e7-a012-c2ac1dc7819d")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class Access4UI
     extends Access4UI_Base
 {

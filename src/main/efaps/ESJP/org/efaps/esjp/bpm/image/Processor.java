@@ -23,7 +23,7 @@ package org.efaps.esjp.bpm.image;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 /**
@@ -35,7 +35,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("599f5f04-b288-48b4-8cb1-c31459f8cc71")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class Processor
     extends Processor_Base
 {

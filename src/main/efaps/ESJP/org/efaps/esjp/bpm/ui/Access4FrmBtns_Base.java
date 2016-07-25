@@ -31,7 +31,7 @@ import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.user.Role;
 import org.efaps.bpm.identity.EntityMapper;
@@ -52,7 +52,7 @@ import org.kie.internal.task.api.model.Operation;
  * @version $Id$
  */
 @EFapsUUID("0d2afb83-5e21-4d32-8b83-741bb08b4a59")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class Access4FrmBtns_Base
     extends AbstractCommon
 {
@@ -61,7 +61,7 @@ public abstract class Access4FrmBtns_Base
         throws EFapsException
     {
         final Return ret = new Return();
-        final Set<Operation> operations = new HashSet<Operation>();
+        final Set<Operation> operations = new HashSet<>();
         ret.put(ReturnValues.VALUES, operations);
 
         final boolean requireClaim = "true".equalsIgnoreCase(getProperty(_parameter, "RequireClaim"));

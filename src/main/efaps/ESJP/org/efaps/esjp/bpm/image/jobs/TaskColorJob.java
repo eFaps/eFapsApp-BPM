@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.image.jobs;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -33,7 +33,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("d3884db4-b8bb-4771-8892-ada37033b66a")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class TaskColorJob
     extends TaskColorJob_Base
 {

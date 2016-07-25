@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.image.jobs;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.esjp.bpm.image.Context;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ import org.w3c.dom.Element;
  * @version $Id$
  */
 @EFapsUUID("73f21b7e-a6e1-4fb4-9fb1-d31d7ca1f4a2")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class TaskBorderJob_Base
     extends AbstractJob
 {
@@ -79,6 +79,7 @@ public abstract class TaskBorderJob_Base
     }
 
 
+    @Override
     public void transform(final Context context,
                           final String _nodeID)
     {

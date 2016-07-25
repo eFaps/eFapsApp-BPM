@@ -30,7 +30,7 @@ import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
 import org.efaps.admin.event.Return.ReturnValues;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.user.AbstractUserObject;
 import org.efaps.db.CachedMultiPrintQuery;
@@ -49,7 +49,7 @@ import org.joda.time.LocalDateTime;
  * @version $Id$
  */
 @EFapsUUID("b06381e7-a991-47eb-b107-9f66e58b07fb")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class PotentialOwnerListener_Base
     implements EventExecution
 {
@@ -61,8 +61,8 @@ public abstract class PotentialOwnerListener_Base
         final Return ret = new Return();
         final List<?> owners = (List<?>) _parameter.get(ParameterValues.BPM_VALUES);
         if (!owners.isEmpty()) {
-            final List<String> uuids = new ArrayList<String>();
-            final List<AbstractUserObject> newOwners = new ArrayList<AbstractUserObject>();
+            final List<String> uuids = new ArrayList<>();
+            final List<AbstractUserObject> newOwners = new ArrayList<>();
             for (final Object owner : owners) {
                 newOwners.add((AbstractUserObject) owner);
                 uuids.add(((AbstractUserObject) owner).getUUID().toString());

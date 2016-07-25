@@ -35,7 +35,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.util.XMLResourceDescriptor;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.esjp.bpm.image.jobs.TransformationJob;
 import org.w3c.dom.Document;
@@ -49,7 +49,7 @@ import org.w3c.dom.NodeList;
  * @version $Id$
  */
 @EFapsUUID("27e7ac1e-83cd-453c-8d5a-435519838381")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class Processor_Base
 {
 
@@ -57,7 +57,7 @@ public abstract class Processor_Base
 
 
     private final Context context = new Context();
-    private final List<TransformationJob> transformationJobs = new ArrayList<TransformationJob>();
+    private final List<TransformationJob> transformationJobs = new ArrayList<>();
 
     public Processor_Base(final InputStream _svg)
         throws IOException

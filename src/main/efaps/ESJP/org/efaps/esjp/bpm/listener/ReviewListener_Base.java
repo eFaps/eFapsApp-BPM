@@ -23,6 +23,8 @@ package org.efaps.esjp.bpm.listener;
 
 import java.util.Map;
 
+import org.efaps.admin.program.esjp.EFapsApplication;
+import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.bpm.BPM;
 import org.efaps.db.Insert;
 import org.efaps.db.Instance;
@@ -37,6 +39,8 @@ import org.efaps.util.EFapsException;
  * @author The eFaps Team
  * @version $Id$
  */
+@EFapsUUID("1dd177d8-45ff-4a5f-b167-e85c699a2c18")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class ReviewListener_Base
     extends AbstractAsyncListener
 {

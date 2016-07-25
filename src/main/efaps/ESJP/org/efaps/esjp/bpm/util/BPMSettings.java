@@ -21,7 +21,7 @@
 
 package org.efaps.esjp.bpm.util;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -32,7 +32,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("24fd5863-fec2-4bc9-bd89-a1df7aa3cf6d")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public interface BPMSettings
 {
 }

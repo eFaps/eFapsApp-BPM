@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.image.jobs;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 /**
@@ -32,7 +32,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("624c7e40-d3c9-48f7-a414-d1873066373f")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class AbstractJob
     extends AbstractJob_Base
 {

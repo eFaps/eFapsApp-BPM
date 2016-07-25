@@ -24,7 +24,7 @@ package org.efaps.esjp.bpm.result;
 import java.io.Serializable;
 import java.util.UUID;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.admin.user.Person;
 import org.efaps.db.Context;
@@ -38,7 +38,7 @@ import org.efaps.util.EFapsException;
  * @version $Id$
  */
 @EFapsUUID("09fcf691-3773-4738-929e-3684d198aed2")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class Review
     implements Serializable
 {

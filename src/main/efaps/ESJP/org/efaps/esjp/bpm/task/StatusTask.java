@@ -21,7 +21,7 @@
 
 package org.efaps.esjp.bpm.task;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -34,7 +34,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("c09c6982-edb5-4d86-a872-fcdde760b596")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class StatusTask
     extends StatusTask_Base
 {

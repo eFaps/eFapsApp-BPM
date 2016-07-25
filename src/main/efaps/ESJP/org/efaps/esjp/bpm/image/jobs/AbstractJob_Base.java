@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  * @version $Id$
  */
 @EFapsUUID("bdc0379f-b86f-44da-914a-3a164605fb35")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class AbstractJob_Base
     implements TransformationJob
 {
@@ -54,7 +54,7 @@ public abstract class AbstractJob_Base
     /**
      * List of task names the job belongs to.
      */
-    private final List<String> taskNames = new ArrayList<String>();
+    private final List<String> taskNames = new ArrayList<>();
 
     public AbstractJob_Base(final String _key,
                             final String... _taskNames)

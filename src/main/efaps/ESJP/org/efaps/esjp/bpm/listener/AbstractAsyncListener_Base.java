@@ -23,6 +23,8 @@ package org.efaps.esjp.bpm.listener;
 
 import java.util.Map;
 
+import org.efaps.admin.program.esjp.EFapsApplication;
+import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.bpm.listener.IAsyncListener;
 import org.efaps.util.EFapsException;
 
@@ -33,6 +35,8 @@ import org.efaps.util.EFapsException;
  * @author The eFaps Team
  * @version $Id$
  */
+@EFapsUUID("201ca66d-626d-4f9f-b8c8-a11eb5ea8b77")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class AbstractAsyncListener_Base
     implements IAsyncListener
 {

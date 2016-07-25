@@ -27,7 +27,7 @@ import org.efaps.admin.datamodel.Status;
 import org.efaps.admin.event.Parameter;
 import org.efaps.admin.event.Parameter.ParameterValues;
 import org.efaps.admin.event.Return;
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.db.Instance;
 import org.efaps.db.Update;
@@ -41,7 +41,7 @@ import org.efaps.util.EFapsException;
  * @version $Id$
  */
 @EFapsUUID("ed2cc573-d54f-4e8b-8fef-a45a2122305a")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public abstract class StatusTask_Base
 {
 

@@ -21,7 +21,7 @@
 
 package org.efaps.esjp.bpm.ui;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 
@@ -34,7 +34,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("0dfdc98f-cf59-412e-98fb-af6a6538bd30")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class Access4FrmBtns
     extends Access4FrmBtns_Base
 {

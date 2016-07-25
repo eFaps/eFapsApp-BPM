@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.listener;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 /**
@@ -32,7 +32,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("25106570-3edc-4844-b680-e56716fd080a")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class PotentialOwnerListener
     extends PotentialOwnerListener_Base
 {

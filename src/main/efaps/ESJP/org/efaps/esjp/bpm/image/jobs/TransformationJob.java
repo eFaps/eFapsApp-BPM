@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.image.jobs;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 import org.efaps.esjp.bpm.image.Context;
 
@@ -31,7 +31,7 @@ import org.efaps.esjp.bpm.image.Context;
  * @version $Id$
  */
 @EFapsUUID("c9a04553-4b17-458f-a5b9-40bb8506299e")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public interface TransformationJob
 {
 

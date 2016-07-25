@@ -21,6 +21,8 @@
 
 package org.efaps.esjp.bpm.listener;
 
+import org.efaps.admin.program.esjp.EFapsApplication;
+import org.efaps.admin.program.esjp.EFapsUUID;
 
 /**
  * TODO comment!
@@ -28,6 +30,8 @@ package org.efaps.esjp.bpm.listener;
  * @author The eFaps Team
  * @version $Id$
  */
+@EFapsUUID("dd0271ef-6d1f-4e49-bef9-f91ac7b67df1")
+@EFapsApplication("eFapsApp-BPM")
 public class ReviewListener
     extends ReviewListener_Base
 {

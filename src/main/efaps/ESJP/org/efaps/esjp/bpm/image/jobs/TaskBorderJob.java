@@ -20,7 +20,7 @@
 
 package org.efaps.esjp.bpm.image.jobs;
 
-import org.efaps.admin.program.esjp.EFapsRevision;
+import org.efaps.admin.program.esjp.EFapsApplication;
 import org.efaps.admin.program.esjp.EFapsUUID;
 
 /**
@@ -32,7 +32,7 @@ import org.efaps.admin.program.esjp.EFapsUUID;
  * @version $Id$
  */
 @EFapsUUID("38768f83-010e-42aa-8234-0d7d654674b9")
-@EFapsRevision("$Rev$")
+@EFapsApplication("eFapsApp-BPM")
 public class TaskBorderJob
     extends TaskBorderJob_Base
 {
