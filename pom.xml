@@ -152,6 +152,11 @@
     <dependencies>
         <dependency>
             <groupId>org.efaps</groupId>
+            <artifactId>efaps-bpm</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps</groupId>
             <artifactId>efaps-kernel-install</artifactId>
             <version>${efaps.app.dependencies}</version>
         </dependency>
